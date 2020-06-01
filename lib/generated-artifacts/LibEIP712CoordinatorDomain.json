@@ -1,0 +1,142 @@
+{
+    "schemaVersion": "2.0.0",
+    "contractName": "LibEIP712CoordinatorDomain",
+    "compilerOutput": {
+        "abi": [
+            {
+                "inputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "chainId",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "address",
+                        "name": "verifyingContractAddressIfExists",
+                        "type": "address"
+                    }
+                ],
+                "payable": false,
+                "stateMutability": "nonpayable",
+                "type": "constructor"
+            },
+            {
+                "constant": true,
+                "inputs": [],
+                "name": "EIP712_COORDINATOR_DOMAIN_HASH",
+                "outputs": [
+                    {
+                        "internalType": "bytes32",
+                        "name": "",
+                        "type": "bytes32"
+                    }
+                ],
+                "payable": false,
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "constant": true,
+                "inputs": [],
+                "name": "EIP712_COORDINATOR_DOMAIN_NAME",
+                "outputs": [
+                    {
+                        "internalType": "string",
+                        "name": "",
+                        "type": "string"
+                    }
+                ],
+                "payable": false,
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "constant": true,
+                "inputs": [],
+                "name": "EIP712_COORDINATOR_DOMAIN_VERSION",
+                "outputs": [
+                    {
+                        "internalType": "string",
+                        "name": "",
+                        "type": "string"
+                    }
+                ],
+                "payable": false,
+                "stateMutability": "view",
+                "type": "function"
+            }
+        ],
+        "devdoc": {
+            "methods": {
+                "constructor": {
+                    "params": {
+                        "chainId": "Chain ID of the network this contract is deployed on.",
+                        "verifyingContractAddressIfExists": "Address of the verifying contract (null if the address of this contract)"
+                    }
+                }
+            }
+        },
+        "evm": {
+            "bytecode": {
+                "linkReferences": {},
+                "object": "0x608060405234801561001057600080fd5b5060405161031a38038061031a8339818101604052604081101561003357600080fd5b50805160209091015160006001600160a01b038216156100535781610055565b305b90506100bf6040518060400160405280601781526020017f30782050726f746f636f6c20436f6f7264696e61746f72000000000000000000815250604051806040016040528060058152602001640332e302e360dc1b81525085846100cb60201b61015d1760201c565b60005550610122915050565b8351602094850120835193850193909320604080517f8b73c3c69bb8fe3d512ecc4cf759cc79239f7b179b0ffacaa9a75d522b39400f815295860194909452928401929092526060830152608082015260a0902090565b6101e9806101316000396000f3fe608060405234801561001057600080fd5b50600436106100415760003560e01c806389fab5b714610046578063b2562b7a146100c3578063fb6961cc146100cb575b600080fd5b61004e6100e5565b6040805160208082528351818301528351919283929083019185019080838360005b83811015610088578181015183820152602001610070565b50505050905090810190601f1680156100b55780820380516001836020036101000a031916815260200191505b509250505060405180910390f35b61004e61011e565b6100d3610157565b60408051918252519081900360200190f35b6040518060400160405280601781526020017f30782050726f746f636f6c20436f6f7264696e61746f7200000000000000000081525081565b6040518060400160405280600581526020017f332e302e3000000000000000000000000000000000000000000000000000000081525081565b60005481565b8351602094850120835193850193909320604080517f8b73c3c69bb8fe3d512ecc4cf759cc79239f7b179b0ffacaa9a75d522b39400f815295860194909452928401929092526060830152608082015260a090209056fea265627a7a723158207aa7f9c3f3ba028aa04e3929f8eee725e2a294f6dfb458f4d9efec14712577a464736f6c63430005100032",
+                "opcodes": "PUSH1 0x80 PUSH1 0x40 MSTORE CALLVALUE DUP1 ISZERO PUSH2 0x10 JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST POP PUSH1 0x40 MLOAD PUSH2 0x31A CODESIZE SUB DUP1 PUSH2 0x31A DUP4 CODECOPY DUP2 DUP2 ADD PUSH1 0x40 MSTORE PUSH1 0x40 DUP2 LT ISZERO PUSH2 0x33 JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST POP DUP1 MLOAD PUSH1 0x20 SWAP1 SWAP2 ADD MLOAD PUSH1 0x0 PUSH1 0x1 PUSH1 0x1 PUSH1 0xA0 SHL SUB DUP3 AND ISZERO PUSH2 0x53 JUMPI DUP2 PUSH2 0x55 JUMP JUMPDEST ADDRESS JUMPDEST SWAP1 POP PUSH2 0xBF PUSH1 0x40 MLOAD DUP1 PUSH1 0x40 ADD PUSH1 0x40 MSTORE DUP1 PUSH1 0x17 DUP2 MSTORE PUSH1 0x20 ADD PUSH32 0x30782050726F746F636F6C20436F6F7264696E61746F72000000000000000000 DUP2 MSTORE POP PUSH1 0x40 MLOAD DUP1 PUSH1 0x40 ADD PUSH1 0x40 MSTORE DUP1 PUSH1 0x5 DUP2 MSTORE PUSH1 0x20 ADD PUSH5 0x332E302E3 PUSH1 0xDC SHL DUP2 MSTORE POP DUP6 DUP5 PUSH2 0xCB PUSH1 0x20 SHL PUSH2 0x15D OR PUSH1 0x20 SHR JUMP JUMPDEST PUSH1 0x0 SSTORE POP PUSH2 0x122 SWAP2 POP POP JUMP JUMPDEST DUP4 MLOAD PUSH1 0x20 SWAP5 DUP6 ADD KECCAK256 DUP4 MLOAD SWAP4 DUP6 ADD SWAP4 SWAP1 SWAP4 KECCAK256 PUSH1 0x40 DUP1 MLOAD PUSH32 0x8B73C3C69BB8FE3D512ECC4CF759CC79239F7B179B0FFACAA9A75D522B39400F DUP2 MSTORE SWAP6 DUP7 ADD SWAP5 SWAP1 SWAP5 MSTORE SWAP3 DUP5 ADD SWAP3 SWAP1 SWAP3 MSTORE PUSH1 0x60 DUP4 ADD MSTORE PUSH1 0x80 DUP3 ADD MSTORE PUSH1 0xA0 SWAP1 KECCAK256 SWAP1 JUMP JUMPDEST PUSH2 0x1E9 DUP1 PUSH2 0x131 PUSH1 0x0 CODECOPY PUSH1 0x0 RETURN INVALID PUSH1 0x80 PUSH1 0x40 MSTORE CALLVALUE DUP1 ISZERO PUSH2 0x10 JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST POP PUSH1 0x4 CALLDATASIZE LT PUSH2 0x41 JUMPI PUSH1 0x0 CALLDATALOAD PUSH1 0xE0 SHR DUP1 PUSH4 0x89FAB5B7 EQ PUSH2 0x46 JUMPI DUP1 PUSH4 0xB2562B7A EQ PUSH2 0xC3 JUMPI DUP1 PUSH4 0xFB6961CC EQ PUSH2 0xCB JUMPI JUMPDEST PUSH1 0x0 DUP1 REVERT JUMPDEST PUSH2 0x4E PUSH2 0xE5 JUMP JUMPDEST PUSH1 0x40 DUP1 MLOAD PUSH1 0x20 DUP1 DUP3 MSTORE DUP4 MLOAD DUP2 DUP4 ADD MSTORE DUP4 MLOAD SWAP2 SWAP3 DUP4 SWAP3 SWAP1 DUP4 ADD SWAP2 DUP6 ADD SWAP1 DUP1 DUP4 DUP4 PUSH1 0x0 JUMPDEST DUP4 DUP2 LT ISZERO PUSH2 0x88 JUMPI DUP2 DUP2 ADD MLOAD DUP4 DUP3 ADD MSTORE PUSH1 0x20 ADD PUSH2 0x70 JUMP JUMPDEST POP POP POP POP SWAP1 POP SWAP1 DUP2 ADD SWAP1 PUSH1 0x1F AND DUP1 ISZERO PUSH2 0xB5 JUMPI DUP1 DUP3 SUB DUP1 MLOAD PUSH1 0x1 DUP4 PUSH1 0x20 SUB PUSH2 0x100 EXP SUB NOT AND DUP2 MSTORE PUSH1 0x20 ADD SWAP2 POP JUMPDEST POP SWAP3 POP POP POP PUSH1 0x40 MLOAD DUP1 SWAP2 SUB SWAP1 RETURN JUMPDEST PUSH2 0x4E PUSH2 0x11E JUMP JUMPDEST PUSH2 0xD3 PUSH2 0x157 JUMP JUMPDEST PUSH1 0x40 DUP1 MLOAD SWAP2 DUP3 MSTORE MLOAD SWAP1 DUP2 SWAP1 SUB PUSH1 0x20 ADD SWAP1 RETURN JUMPDEST PUSH1 0x40 MLOAD DUP1 PUSH1 0x40 ADD PUSH1 0x40 MSTORE DUP1 PUSH1 0x17 DUP2 MSTORE PUSH1 0x20 ADD PUSH32 0x30782050726F746F636F6C20436F6F7264696E61746F72000000000000000000 DUP2 MSTORE POP DUP2 JUMP JUMPDEST PUSH1 0x40 MLOAD DUP1 PUSH1 0x40 ADD PUSH1 0x40 MSTORE DUP1 PUSH1 0x5 DUP2 MSTORE PUSH1 0x20 ADD PUSH32 0x332E302E30000000000000000000000000000000000000000000000000000000 DUP2 MSTORE POP DUP2 JUMP JUMPDEST PUSH1 0x0 SLOAD DUP2 JUMP JUMPDEST DUP4 MLOAD PUSH1 0x20 SWAP5 DUP6 ADD KECCAK256 DUP4 MLOAD SWAP4 DUP6 ADD SWAP4 SWAP1 SWAP4 KECCAK256 PUSH1 0x40 DUP1 MLOAD PUSH32 0x8B73C3C69BB8FE3D512ECC4CF759CC79239F7B179B0FFACAA9A75D522B39400F DUP2 MSTORE SWAP6 DUP7 ADD SWAP5 SWAP1 SWAP5 MSTORE SWAP3 DUP5 ADD SWAP3 SWAP1 SWAP3 MSTORE PUSH1 0x60 DUP4 ADD MSTORE PUSH1 0x80 DUP3 ADD MSTORE PUSH1 0xA0 SWAP1 KECCAK256 SWAP1 JUMP INVALID LOG2 PUSH6 0x627A7A723158 KECCAK256 PUSH27 0xA7F9C3F3BA028AA04E3929F8EEE725E2A294F6DFB458F4D9EFEC14 PUSH18 0x2577A464736F6C6343000510003200000000 ",
+                "sourceMap": "665:1651:10:-;;;1346:515;8:9:-1;5:2;;;30:1;27;20:12;5:2;1346:515:10;;;;;;;;;;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;1346:515:10;;;;;;;1469:32;-1:-1:-1;;;;;1504:46:10;;;:121;;1593:32;1504:121;;;1573:4;1504:121;1469:156;;1668:186;1708:30;;;;;;;;;;;;;;;;;1752:33;;;;;;;;;;;;;-1:-1:-1;;;1752:33:10;;;1799:7;1820:24;1668:26;;;;;:186;;:::i;:::-;1635:30;:219;-1:-1:-1;665:1651:10;;-1:-1:-1;;665:1651:10;1285:1263:27;1997:11;;1992:2;1982:13;;;1972:37;2069:14;;2051:16;;;2041:43;;;;2158:2;2152:9;;962:66;2213:26;;2259:15;;;2252:33;;;;2305:15;;;2298:36;;;;2366:2;2354:15;;2347:32;2411:3;2399:16;;2392:43;2505:3;2487:22;;;1285:1263::o;665:1651:10:-;;;;;;;"
+            },
+            "deployedBytecode": {
+                "linkReferences": {},
+                "object": "0x608060405234801561001057600080fd5b50600436106100415760003560e01c806389fab5b714610046578063b2562b7a146100c3578063fb6961cc146100cb575b600080fd5b61004e6100e5565b6040805160208082528351818301528351919283929083019185019080838360005b83811015610088578181015183820152602001610070565b50505050905090810190601f1680156100b55780820380516001836020036101000a031916815260200191505b509250505060405180910390f35b61004e61011e565b6100d3610157565b60408051918252519081900360200190f35b6040518060400160405280601781526020017f30782050726f746f636f6c20436f6f7264696e61746f7200000000000000000081525081565b6040518060400160405280600581526020017f332e302e3000000000000000000000000000000000000000000000000000000081525081565b60005481565b8351602094850120835193850193909320604080517f8b73c3c69bb8fe3d512ecc4cf759cc79239f7b179b0ffacaa9a75d522b39400f815295860194909452928401929092526060830152608082015260a090209056fea265627a7a723158207aa7f9c3f3ba028aa04e3929f8eee725e2a294f6dfb458f4d9efec14712577a464736f6c63430005100032",
+                "opcodes": "PUSH1 0x80 PUSH1 0x40 MSTORE CALLVALUE DUP1 ISZERO PUSH2 0x10 JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST POP PUSH1 0x4 CALLDATASIZE LT PUSH2 0x41 JUMPI PUSH1 0x0 CALLDATALOAD PUSH1 0xE0 SHR DUP1 PUSH4 0x89FAB5B7 EQ PUSH2 0x46 JUMPI DUP1 PUSH4 0xB2562B7A EQ PUSH2 0xC3 JUMPI DUP1 PUSH4 0xFB6961CC EQ PUSH2 0xCB JUMPI JUMPDEST PUSH1 0x0 DUP1 REVERT JUMPDEST PUSH2 0x4E PUSH2 0xE5 JUMP JUMPDEST PUSH1 0x40 DUP1 MLOAD PUSH1 0x20 DUP1 DUP3 MSTORE DUP4 MLOAD DUP2 DUP4 ADD MSTORE DUP4 MLOAD SWAP2 SWAP3 DUP4 SWAP3 SWAP1 DUP4 ADD SWAP2 DUP6 ADD SWAP1 DUP1 DUP4 DUP4 PUSH1 0x0 JUMPDEST DUP4 DUP2 LT ISZERO PUSH2 0x88 JUMPI DUP2 DUP2 ADD MLOAD DUP4 DUP3 ADD MSTORE PUSH1 0x20 ADD PUSH2 0x70 JUMP JUMPDEST POP POP POP POP SWAP1 POP SWAP1 DUP2 ADD SWAP1 PUSH1 0x1F AND DUP1 ISZERO PUSH2 0xB5 JUMPI DUP1 DUP3 SUB DUP1 MLOAD PUSH1 0x1 DUP4 PUSH1 0x20 SUB PUSH2 0x100 EXP SUB NOT AND DUP2 MSTORE PUSH1 0x20 ADD SWAP2 POP JUMPDEST POP SWAP3 POP POP POP PUSH1 0x40 MLOAD DUP1 SWAP2 SUB SWAP1 RETURN JUMPDEST PUSH2 0x4E PUSH2 0x11E JUMP JUMPDEST PUSH2 0xD3 PUSH2 0x157 JUMP JUMPDEST PUSH1 0x40 DUP1 MLOAD SWAP2 DUP3 MSTORE MLOAD SWAP1 DUP2 SWAP1 SUB PUSH1 0x20 ADD SWAP1 RETURN JUMPDEST PUSH1 0x40 MLOAD DUP1 PUSH1 0x40 ADD PUSH1 0x40 MSTORE DUP1 PUSH1 0x17 DUP2 MSTORE PUSH1 0x20 ADD PUSH32 0x30782050726F746F636F6C20436F6F7264696E61746F72000000000000000000 DUP2 MSTORE POP DUP2 JUMP JUMPDEST PUSH1 0x40 MLOAD DUP1 PUSH1 0x40 ADD PUSH1 0x40 MSTORE DUP1 PUSH1 0x5 DUP2 MSTORE PUSH1 0x20 ADD PUSH32 0x332E302E30000000000000000000000000000000000000000000000000000000 DUP2 MSTORE POP DUP2 JUMP JUMPDEST PUSH1 0x0 SLOAD DUP2 JUMP JUMPDEST DUP4 MLOAD PUSH1 0x20 SWAP5 DUP6 ADD KECCAK256 DUP4 MLOAD SWAP4 DUP6 ADD SWAP4 SWAP1 SWAP4 KECCAK256 PUSH1 0x40 DUP1 MLOAD PUSH32 0x8B73C3C69BB8FE3D512ECC4CF759CC79239F7B179B0FFACAA9A75D522B39400F DUP2 MSTORE SWAP6 DUP7 ADD SWAP5 SWAP1 SWAP5 MSTORE SWAP3 DUP5 ADD SWAP3 SWAP1 SWAP3 MSTORE PUSH1 0x60 DUP4 ADD MSTORE PUSH1 0x80 DUP3 ADD MSTORE PUSH1 0xA0 SWAP1 KECCAK256 SWAP1 JUMP INVALID LOG2 PUSH6 0x627A7A723158 KECCAK256 PUSH27 0xA7F9C3F3BA028AA04E3929F8EEE725E2A294F6DFB458F4D9EFEC14 PUSH18 0x2577A464736F6C6343000510003200000000 ",
+                "sourceMap": "665:1651:10:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;665:1651:10;;;;;;;;;;;;;;;;;;;;;;;;;;;;;760:81;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;8:100:-1;33:3;30:1;27:10;8:100;;;90:11;;;84:18;71:11;;;64:39;52:2;45:10;8:100;;;12:14;760:81:10;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;903:66;;;:::i;1096:45::-;;;:::i;:::-;;;;;;;;;;;;;;;;760:81;;;;;;;;;;;;;;;;;;;:::o;903:66::-;;;;;;;;;;;;;;;;;;;:::o;1096:45::-;;;;:::o;1285:1263:27:-;1997:11;;1992:2;1982:13;;;1972:37;2069:14;;2051:16;;;2041:43;;;;2158:2;2152:9;;962:66;2213:26;;2259:15;;;2252:33;;;;2305:15;;;2298:36;;;;2366:2;2354:15;;2347:32;2411:3;2399:16;;2392:43;2505:3;2487:22;;;1285:1263::o"
+            }
+        }
+    },
+    "sources": {
+        "src/libs/LibEIP712CoordinatorDomain.sol": {
+            "id": 10
+        },
+        "@0x/contracts-utils/contracts/src/LibEIP712.sol": {
+            "id": 27
+        }
+    },
+    "sourceCodes": {
+        "src/libs/LibEIP712CoordinatorDomain.sol": "/*\n\n  Copyright 2019 ZeroEx Intl.\n\n  Licensed under the Apache License, Version 2.0 (the \"License\");\n  you may not use this file except in compliance with the License.\n  You may obtain a copy of the License at\n\n    http://www.apache.org/licenses/LICENSE-2.0\n\n  Unless required by applicable law or agreed to in writing, software\n  distributed under the License is distributed on an \"AS IS\" BASIS,\n  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n  See the License for the specific language governing permissions and\n  limitations under the License.\n\n*/\n\npragma solidity ^0.5.9;\n\nimport \"@0x/contracts-utils/contracts/src/LibEIP712.sol\";\n\n\ncontract LibEIP712CoordinatorDomain {\n\n    // EIP712 Domain Name value for the Coordinator\n    string constant public EIP712_COORDINATOR_DOMAIN_NAME = \"0x Protocol Coordinator\";\n\n    // EIP712 Domain Version value for the Coordinator\n    string constant public EIP712_COORDINATOR_DOMAIN_VERSION = \"3.0.0\";\n\n    // Hash of the EIP712 Domain Separator data for the Coordinator\n    // solhint-disable-next-line var-name-mixedcase\n    bytes32 public EIP712_COORDINATOR_DOMAIN_HASH;\n\n    /// @param chainId Chain ID of the network this contract is deployed on.\n    /// @param verifyingContractAddressIfExists Address of the verifying contract (null if the address of this contract)\n    constructor (\n        uint256 chainId,\n        address verifyingContractAddressIfExists\n    )\n        public\n    {\n        address verifyingContractAddress = verifyingContractAddressIfExists == address(0)\n            ? address(this)\n            : verifyingContractAddressIfExists;\n        EIP712_COORDINATOR_DOMAIN_HASH = LibEIP712.hashEIP712Domain(\n            EIP712_COORDINATOR_DOMAIN_NAME,\n            EIP712_COORDINATOR_DOMAIN_VERSION,\n            chainId,\n            verifyingContractAddress\n        );\n    }\n\n    /// @dev Calculates EIP712 encoding for a hash struct in the EIP712 domain\n    ///      of this contract.\n    /// @param hashStruct The EIP712 hash struct.\n    /// @return result EIP712 hash applied to this EIP712 Domain.\n    function _hashEIP712CoordinatorMessage(bytes32 hashStruct)\n        internal\n        view\n        returns (bytes32 result)\n    {\n        return LibEIP712.hashEIP712Message(EIP712_COORDINATOR_DOMAIN_HASH, hashStruct);\n    }\n}\n",
+        "@0x/contracts-utils/contracts/src/LibEIP712.sol": "/*\n\n  Copyright 2019 ZeroEx Intl.\n\n  Licensed under the Apache License, Version 2.0 (the \"License\");\n  you may not use this file except in compliance with the License.\n  You may obtain a copy of the License at\n\n    http://www.apache.org/licenses/LICENSE-2.0\n\n  Unless required by applicable law or agreed to in writing, software\n  distributed under the License is distributed on an \"AS IS\" BASIS,\n  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n  See the License for the specific language governing permissions and\n  limitations under the License.\n\n*/\n\npragma solidity ^0.5.9;\n\n\nlibrary LibEIP712 {\n\n    // Hash of the EIP712 Domain Separator Schema\n    // keccak256(abi.encodePacked(\n    //     \"EIP712Domain(\",\n    //     \"string name,\",\n    //     \"string version,\",\n    //     \"uint256 chainId,\",\n    //     \"address verifyingContract\",\n    //     \")\"\n    // ))\n    bytes32 constant internal _EIP712_DOMAIN_SEPARATOR_SCHEMA_HASH = 0x8b73c3c69bb8fe3d512ecc4cf759cc79239f7b179b0ffacaa9a75d522b39400f;\n\n    /// @dev Calculates a EIP712 domain separator.\n    /// @param name The EIP712 domain name.\n    /// @param version The EIP712 domain version.\n    /// @param verifyingContract The EIP712 verifying contract.\n    /// @return EIP712 domain separator.\n    function hashEIP712Domain(\n        string memory name,\n        string memory version,\n        uint256 chainId,\n        address verifyingContract\n    )\n        internal\n        pure\n        returns (bytes32 result)\n    {\n        bytes32 schemaHash = _EIP712_DOMAIN_SEPARATOR_SCHEMA_HASH;\n\n        // Assembly for more efficient computing:\n        // keccak256(abi.encodePacked(\n        //     _EIP712_DOMAIN_SEPARATOR_SCHEMA_HASH,\n        //     keccak256(bytes(name)),\n        //     keccak256(bytes(version)),\n        //     chainId,\n        //     uint256(verifyingContract)\n        // ))\n\n        assembly {\n            // Calculate hashes of dynamic data\n            let nameHash := keccak256(add(name, 32), mload(name))\n            let versionHash := keccak256(add(version, 32), mload(version))\n\n            // Load free memory pointer\n            let memPtr := mload(64)\n\n            // Store params in memory\n            mstore(memPtr, schemaHash)\n            mstore(add(memPtr, 32), nameHash)\n            mstore(add(memPtr, 64), versionHash)\n            mstore(add(memPtr, 96), chainId)\n            mstore(add(memPtr, 128), verifyingContract)\n\n            // Compute hash\n            result := keccak256(memPtr, 160)\n        }\n        return result;\n    }\n\n    /// @dev Calculates EIP712 encoding for a hash struct with a given domain hash.\n    /// @param eip712DomainHash Hash of the domain domain separator data, computed\n    ///                         with getDomainHash().\n    /// @param hashStruct The EIP712 hash struct.\n    /// @return EIP712 hash applied to the given EIP712 Domain.\n    function hashEIP712Message(bytes32 eip712DomainHash, bytes32 hashStruct)\n        internal\n        pure\n        returns (bytes32 result)\n    {\n        // Assembly for more efficient computing:\n        // keccak256(abi.encodePacked(\n        //     EIP191_HEADER,\n        //     EIP712_DOMAIN_HASH,\n        //     hashStruct\n        // ));\n\n        assembly {\n            // Load free memory pointer\n            let memPtr := mload(64)\n\n            mstore(memPtr, 0x1901000000000000000000000000000000000000000000000000000000000000)  // EIP191 header\n            mstore(add(memPtr, 2), eip712DomainHash)                                            // EIP712 domain hash\n            mstore(add(memPtr, 34), hashStruct)                                                 // Hash of struct\n\n            // Compute hash\n            result := keccak256(memPtr, 66)\n        }\n        return result;\n    }\n}\n"
+    },
+    "sourceTreeHashHex": "0xedc6eab8c8a963cbaf1188a59a0a17d1f5982d2391254642418fe04bcdeb87e7",
+    "compiler": {
+        "name": "solc",
+        "version": "soljson-v0.5.16+commit.9c3226ce.js",
+        "settings": {
+            "optimizer": {
+                "enabled": true,
+                "runs": 1000000,
+                "details": {
+                    "yul": true,
+                    "deduplicate": true,
+                    "cse": true,
+                    "constantOptimizer": true
+                }
+            },
+            "outputSelection": {
+                "*": {
+                    "*": [
+                        "abi",
+                        "devdoc",
+                        "evm.bytecode.object",
+                        "evm.bytecode.sourceMap",
+                        "evm.deployedBytecode.object",
+                        "evm.deployedBytecode.sourceMap"
+                    ]
+                }
+            },
+            "evmVersion": "istanbul",
+            "remappings": [
+                "@0x/contracts-exchange-libs=/Users/jacob/projects/ethdev/0x/workspace-remote/workspace/0x-monorepo/node_modules/@0x/contracts-exchange-libs",
+                "@0x/contracts-utils=/Users/jacob/projects/ethdev/0x/workspace-remote/workspace/0x-monorepo/contracts/coordinator/node_modules/@0x/contracts-utils",
+                "@0x/contracts-exchange=/Users/jacob/projects/ethdev/0x/workspace-remote/workspace/0x-monorepo/contracts/coordinator/node_modules/@0x/contracts-exchange"
+            ]
+        }
+    },
+    "chains": {}
+}

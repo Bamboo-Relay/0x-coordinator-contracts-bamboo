@@ -1,0 +1,99 @@
+{
+    "schemaVersion": "2.0.0",
+    "contractName": "LibConstants",
+    "compilerOutput": {
+        "abi": [
+            {
+                "inputs": [
+                    {
+                        "internalType": "address",
+                        "name": "exchange",
+                        "type": "address"
+                    }
+                ],
+                "payable": false,
+                "stateMutability": "nonpayable",
+                "type": "constructor"
+            }
+        ],
+        "devdoc": {
+            "methods": {
+                "constructor": {
+                    "params": {
+                        "exchange": "Address of the 0x Exchange contract."
+                    }
+                }
+            }
+        },
+        "evm": {
+            "bytecode": {
+                "linkReferences": {},
+                "object": "0x6080604052348015600f57600080fd5b50604051609d380380609d83398181016040526020811015602f57600080fd5b5051600080546001600160a01b039092166001600160a01b0319909216919091179055603e80605f6000396000f3fe6080604052600080fdfea265627a7a72315820d09d8e4e691b7d831e1773e5ad7f86d327f3bd8677fd809c253b711073563a8d64736f6c63430005100032",
+                "opcodes": "PUSH1 0x80 PUSH1 0x40 MSTORE CALLVALUE DUP1 ISZERO PUSH1 0xF JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST POP PUSH1 0x40 MLOAD PUSH1 0x9D CODESIZE SUB DUP1 PUSH1 0x9D DUP4 CODECOPY DUP2 DUP2 ADD PUSH1 0x40 MSTORE PUSH1 0x20 DUP2 LT ISZERO PUSH1 0x2F JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST POP MLOAD PUSH1 0x0 DUP1 SLOAD PUSH1 0x1 PUSH1 0x1 PUSH1 0xA0 SHL SUB SWAP1 SWAP3 AND PUSH1 0x1 PUSH1 0x1 PUSH1 0xA0 SHL SUB NOT SWAP1 SWAP3 AND SWAP2 SWAP1 SWAP2 OR SWAP1 SSTORE PUSH1 0x3E DUP1 PUSH1 0x5F PUSH1 0x0 CODECOPY PUSH1 0x0 RETURN INVALID PUSH1 0x80 PUSH1 0x40 MSTORE PUSH1 0x0 DUP1 REVERT INVALID LOG2 PUSH6 0x627A7A723158 KECCAK256 0xD0 SWAP14 DUP15 0x4E PUSH10 0x1B7D831E1773E5AD7F86 0xD3 0x27 RETURN 0xBD DUP7 PUSH24 0xFD809C253B711073563A8D64736F6C634300051000320000 ",
+                "sourceMap": "721:264:7:-;;;882:101;8:9:-1;5:2;;;30:1;27;20:12;5:2;882:101:7;;;;;;;;;;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;-1:-1;882:101:7;942:8;:34;;-1:-1:-1;;;;;942:34:7;;;-1:-1:-1;;;;;;942:34:7;;;;;;;;;721:264;;;;;;"
+            },
+            "deployedBytecode": {
+                "linkReferences": {},
+                "object": "0x6080604052600080fdfea265627a7a72315820d09d8e4e691b7d831e1773e5ad7f86d327f3bd8677fd809c253b711073563a8d64736f6c63430005100032",
+                "opcodes": "PUSH1 0x80 PUSH1 0x40 MSTORE PUSH1 0x0 DUP1 REVERT INVALID LOG2 PUSH6 0x627A7A723158 KECCAK256 0xD0 SWAP14 DUP15 0x4E PUSH10 0x1B7D831E1773E5AD7F86 0xD3 0x27 RETURN 0xBD DUP7 PUSH24 0xFD809C253B711073563A8D64736F6C634300051000320000 ",
+                "sourceMap": "721:264:7:-;;;;;"
+            }
+        }
+    },
+    "sources": {
+        "src/libs/LibConstants.sol": {
+            "id": 7
+        },
+        "@0x/contracts-exchange/contracts/src/interfaces/ITransactions.sol": {
+            "id": 20
+        },
+        "@0x/contracts-exchange-libs/contracts/src/LibZeroExTransaction.sol": {
+            "id": 39
+        },
+        "@0x/contracts-utils/contracts/src/LibEIP712.sol": {
+            "id": 27
+        }
+    },
+    "sourceCodes": {
+        "src/libs/LibConstants.sol": "/*\n\n  Copyright 2019 ZeroEx Intl.\n\n  Licensed under the Apache License, Version 2.0 (the \"License\");\n  you may not use this file except in compliance with the License.\n  You may obtain a copy of the License at\n\n    http://www.apache.org/licenses/LICENSE-2.0\n\n  Unless required by applicable law or agreed to in writing, software\n  distributed under the License is distributed on an \"AS IS\" BASIS,\n  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n  See the License for the specific language governing permissions and\n  limitations under the License.\n\n*/\n\npragma solidity ^0.5.9;\n\nimport \"@0x/contracts-exchange/contracts/src/interfaces/ITransactions.sol\";\n\n\n// solhint-disable var-name-mixedcase\ncontract LibConstants {\n\n    // The 0x Exchange contract.\n    ITransactions internal EXCHANGE;\n\n    /// @param exchange Address of the 0x Exchange contract.\n    constructor (address exchange)\n        public\n    {\n        EXCHANGE = ITransactions(exchange);\n    }\n}\n",
+        "@0x/contracts-exchange/contracts/src/interfaces/ITransactions.sol": "/*\n\n  Copyright 2019 ZeroEx Intl.\n\n  Licensed under the Apache License, Version 2.0 (the \"License\");\n  you may not use this file except in compliance with the License.\n  You may obtain a copy of the License at\n\n    http://www.apache.org/licenses/LICENSE-2.0\n\n  Unless required by applicable law or agreed to in writing, software\n  distributed under the License is distributed on an \"AS IS\" BASIS,\n  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n  See the License for the specific language governing permissions and\n  limitations under the License.\n\n*/\n\npragma solidity ^0.5.9;\npragma experimental ABIEncoderV2;\n\nimport \"@0x/contracts-exchange-libs/contracts/src/LibZeroExTransaction.sol\";\n\n\ncontract ITransactions {\n\n    // TransactionExecution event is emitted when a ZeroExTransaction is executed.\n    event TransactionExecution(bytes32 indexed transactionHash);\n\n    /// @dev Executes an Exchange method call in the context of signer.\n    /// @param transaction 0x transaction containing salt, signerAddress, and data.\n    /// @param signature Proof that transaction has been signed by signer.\n    /// @return ABI encoded return data of the underlying Exchange function call.\n    function executeTransaction(\n        LibZeroExTransaction.ZeroExTransaction memory transaction,\n        bytes memory signature\n    )\n        public\n        payable\n        returns (bytes memory);\n\n    /// @dev Executes a batch of Exchange method calls in the context of signer(s).\n    /// @param transactions Array of 0x transactions containing salt, signerAddress, and data.\n    /// @param signatures Array of proofs that transactions have been signed by signer(s).\n    /// @return Array containing ABI encoded return data for each of the underlying Exchange function calls.\n    function batchExecuteTransactions(\n        LibZeroExTransaction.ZeroExTransaction[] memory transactions,\n        bytes[] memory signatures\n    )\n        public\n        payable\n        returns (bytes[] memory);\n\n    /// @dev The current function will be called in the context of this address (either 0x transaction signer or `msg.sender`).\n    ///      If calling a fill function, this address will represent the taker.\n    ///      If calling a cancel function, this address will represent the maker.\n    /// @return Signer of 0x transaction if entry point is `executeTransaction`.\n    ///         `msg.sender` if entry point is any other function.\n    function _getCurrentContextAddress()\n        internal\n        view\n        returns (address);\n}\n",
+        "@0x/contracts-exchange-libs/contracts/src/LibZeroExTransaction.sol": "/*\n\n  Copyright 2019 ZeroEx Intl.\n\n  Licensed under the Apache License, Version 2.0 (the \"License\");\n  you may not use this file except in compliance with the License.\n  You may obtain a copy of the License at\n\n    http://www.apache.org/licenses/LICENSE-2.0\n\n  Unless required by applicable law or agreed to in writing, software\n  distributed under the License is distributed on an \"AS IS\" BASIS,\n  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n  See the License for the specific language governing permissions and\n  limitations under the License.\n\n*/\n\npragma solidity ^0.5.9;\npragma experimental ABIEncoderV2;\n\nimport \"@0x/contracts-utils/contracts/src/LibEIP712.sol\";\n\n\nlibrary LibZeroExTransaction {\n\n    using LibZeroExTransaction for ZeroExTransaction;\n\n    // Hash for the EIP712 0x transaction schema\n    // keccak256(abi.encodePacked(\n    //    \"ZeroExTransaction(\",\n    //    \"uint256 salt,\",\n    //    \"uint256 expirationTimeSeconds,\",\n    //    \"uint256 gasPrice,\",\n    //    \"address signerAddress,\",\n    //    \"bytes data\",\n    //    \")\"\n    // ));\n    bytes32 constant internal _EIP712_ZEROEX_TRANSACTION_SCHEMA_HASH = 0xec69816980a3a3ca4554410e60253953e9ff375ba4536a98adfa15cc71541508;\n\n    struct ZeroExTransaction {\n        uint256 salt;                   // Arbitrary number to ensure uniqueness of transaction hash.\n        uint256 expirationTimeSeconds;  // Timestamp in seconds at which transaction expires.\n        uint256 gasPrice;               // gasPrice that transaction is required to be executed with.\n        address signerAddress;          // Address of transaction signer.\n        bytes data;                     // AbiV2 encoded calldata.\n    }\n\n    /// @dev Calculates the EIP712 typed data hash of a transaction with a given domain separator.\n    /// @param transaction 0x transaction structure.\n    /// @return EIP712 typed data hash of the transaction.\n    function getTypedDataHash(ZeroExTransaction memory transaction, bytes32 eip712ExchangeDomainHash)\n        internal\n        pure\n        returns (bytes32 transactionHash)\n    {\n        // Hash the transaction with the domain separator of the Exchange contract.\n        transactionHash = LibEIP712.hashEIP712Message(\n            eip712ExchangeDomainHash,\n            transaction.getStructHash()\n        );\n        return transactionHash;\n    }\n\n    /// @dev Calculates EIP712 hash of the 0x transaction struct.\n    /// @param transaction 0x transaction structure.\n    /// @return EIP712 hash of the transaction struct.\n    function getStructHash(ZeroExTransaction memory transaction)\n        internal\n        pure\n        returns (bytes32 result)\n    {\n        bytes32 schemaHash = _EIP712_ZEROEX_TRANSACTION_SCHEMA_HASH;\n        bytes memory data = transaction.data;\n        uint256 salt = transaction.salt;\n        uint256 expirationTimeSeconds = transaction.expirationTimeSeconds;\n        uint256 gasPrice = transaction.gasPrice;\n        address signerAddress = transaction.signerAddress;\n\n        // Assembly for more efficiently computing:\n        // result = keccak256(abi.encodePacked(\n        //     schemaHash,\n        //     salt,\n        //     expirationTimeSeconds,\n        //     gasPrice,\n        //     uint256(signerAddress),\n        //     keccak256(data)\n        // ));\n\n        assembly {\n            // Compute hash of data\n            let dataHash := keccak256(add(data, 32), mload(data))\n\n            // Load free memory pointer\n            let memPtr := mload(64)\n\n            mstore(memPtr, schemaHash)                                                                // hash of schema\n            mstore(add(memPtr, 32), salt)                                                             // salt\n            mstore(add(memPtr, 64), expirationTimeSeconds)                                            // expirationTimeSeconds\n            mstore(add(memPtr, 96), gasPrice)                                                         // gasPrice\n            mstore(add(memPtr, 128), and(signerAddress, 0xffffffffffffffffffffffffffffffffffffffff))  // signerAddress\n            mstore(add(memPtr, 160), dataHash)                                                        // hash of data\n\n            // Compute hash\n            result := keccak256(memPtr, 192)\n        }\n        return result;\n    }\n}\n",
+        "@0x/contracts-utils/contracts/src/LibEIP712.sol": "/*\n\n  Copyright 2019 ZeroEx Intl.\n\n  Licensed under the Apache License, Version 2.0 (the \"License\");\n  you may not use this file except in compliance with the License.\n  You may obtain a copy of the License at\n\n    http://www.apache.org/licenses/LICENSE-2.0\n\n  Unless required by applicable law or agreed to in writing, software\n  distributed under the License is distributed on an \"AS IS\" BASIS,\n  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n  See the License for the specific language governing permissions and\n  limitations under the License.\n\n*/\n\npragma solidity ^0.5.9;\n\n\nlibrary LibEIP712 {\n\n    // Hash of the EIP712 Domain Separator Schema\n    // keccak256(abi.encodePacked(\n    //     \"EIP712Domain(\",\n    //     \"string name,\",\n    //     \"string version,\",\n    //     \"uint256 chainId,\",\n    //     \"address verifyingContract\",\n    //     \")\"\n    // ))\n    bytes32 constant internal _EIP712_DOMAIN_SEPARATOR_SCHEMA_HASH = 0x8b73c3c69bb8fe3d512ecc4cf759cc79239f7b179b0ffacaa9a75d522b39400f;\n\n    /// @dev Calculates a EIP712 domain separator.\n    /// @param name The EIP712 domain name.\n    /// @param version The EIP712 domain version.\n    /// @param verifyingContract The EIP712 verifying contract.\n    /// @return EIP712 domain separator.\n    function hashEIP712Domain(\n        string memory name,\n        string memory version,\n        uint256 chainId,\n        address verifyingContract\n    )\n        internal\n        pure\n        returns (bytes32 result)\n    {\n        bytes32 schemaHash = _EIP712_DOMAIN_SEPARATOR_SCHEMA_HASH;\n\n        // Assembly for more efficient computing:\n        // keccak256(abi.encodePacked(\n        //     _EIP712_DOMAIN_SEPARATOR_SCHEMA_HASH,\n        //     keccak256(bytes(name)),\n        //     keccak256(bytes(version)),\n        //     chainId,\n        //     uint256(verifyingContract)\n        // ))\n\n        assembly {\n            // Calculate hashes of dynamic data\n            let nameHash := keccak256(add(name, 32), mload(name))\n            let versionHash := keccak256(add(version, 32), mload(version))\n\n            // Load free memory pointer\n            let memPtr := mload(64)\n\n            // Store params in memory\n            mstore(memPtr, schemaHash)\n            mstore(add(memPtr, 32), nameHash)\n            mstore(add(memPtr, 64), versionHash)\n            mstore(add(memPtr, 96), chainId)\n            mstore(add(memPtr, 128), verifyingContract)\n\n            // Compute hash\n            result := keccak256(memPtr, 160)\n        }\n        return result;\n    }\n\n    /// @dev Calculates EIP712 encoding for a hash struct with a given domain hash.\n    /// @param eip712DomainHash Hash of the domain domain separator data, computed\n    ///                         with getDomainHash().\n    /// @param hashStruct The EIP712 hash struct.\n    /// @return EIP712 hash applied to the given EIP712 Domain.\n    function hashEIP712Message(bytes32 eip712DomainHash, bytes32 hashStruct)\n        internal\n        pure\n        returns (bytes32 result)\n    {\n        // Assembly for more efficient computing:\n        // keccak256(abi.encodePacked(\n        //     EIP191_HEADER,\n        //     EIP712_DOMAIN_HASH,\n        //     hashStruct\n        // ));\n\n        assembly {\n            // Load free memory pointer\n            let memPtr := mload(64)\n\n            mstore(memPtr, 0x1901000000000000000000000000000000000000000000000000000000000000)  // EIP191 header\n            mstore(add(memPtr, 2), eip712DomainHash)                                            // EIP712 domain hash\n            mstore(add(memPtr, 34), hashStruct)                                                 // Hash of struct\n\n            // Compute hash\n            result := keccak256(memPtr, 66)\n        }\n        return result;\n    }\n}\n"
+    },
+    "sourceTreeHashHex": "0xe8636974321bbd05fe2f0f8da9a9d08c22e11b904302d17a5bab92bf90f0b464",
+    "compiler": {
+        "name": "solc",
+        "version": "soljson-v0.5.16+commit.9c3226ce.js",
+        "settings": {
+            "optimizer": {
+                "enabled": true,
+                "runs": 1000000,
+                "details": {
+                    "yul": true,
+                    "deduplicate": true,
+                    "cse": true,
+                    "constantOptimizer": true
+                }
+            },
+            "outputSelection": {
+                "*": {
+                    "*": [
+                        "abi",
+                        "devdoc",
+                        "evm.bytecode.object",
+                        "evm.bytecode.sourceMap",
+                        "evm.deployedBytecode.object",
+                        "evm.deployedBytecode.sourceMap"
+                    ]
+                }
+            },
+            "evmVersion": "istanbul",
+            "remappings": [
+                "@0x/contracts-exchange-libs=/Users/jacob/projects/ethdev/0x/workspace-remote/workspace/0x-monorepo/node_modules/@0x/contracts-exchange-libs",
+                "@0x/contracts-utils=/Users/jacob/projects/ethdev/0x/workspace-remote/workspace/0x-monorepo/contracts/coordinator/node_modules/@0x/contracts-utils",
+                "@0x/contracts-exchange=/Users/jacob/projects/ethdev/0x/workspace-remote/workspace/0x-monorepo/contracts/coordinator/node_modules/@0x/contracts-exchange"
+            ]
+        }
+    },
+    "chains": {}
+}

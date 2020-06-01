@@ -1,0 +1,183 @@
+{
+    "schemaVersion": "2.0.0",
+    "contractName": "LibCoordinatorApproval",
+    "compilerOutput": {
+        "abi": [
+            {
+                "constant": true,
+                "inputs": [],
+                "name": "EIP712_COORDINATOR_APPROVAL_SCHEMA_HASH",
+                "outputs": [
+                    {
+                        "internalType": "bytes32",
+                        "name": "",
+                        "type": "bytes32"
+                    }
+                ],
+                "payable": false,
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "constant": true,
+                "inputs": [],
+                "name": "EIP712_COORDINATOR_DOMAIN_HASH",
+                "outputs": [
+                    {
+                        "internalType": "bytes32",
+                        "name": "",
+                        "type": "bytes32"
+                    }
+                ],
+                "payable": false,
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "constant": true,
+                "inputs": [],
+                "name": "EIP712_COORDINATOR_DOMAIN_NAME",
+                "outputs": [
+                    {
+                        "internalType": "string",
+                        "name": "",
+                        "type": "string"
+                    }
+                ],
+                "payable": false,
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "constant": true,
+                "inputs": [],
+                "name": "EIP712_COORDINATOR_DOMAIN_VERSION",
+                "outputs": [
+                    {
+                        "internalType": "string",
+                        "name": "",
+                        "type": "string"
+                    }
+                ],
+                "payable": false,
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "constant": true,
+                "inputs": [
+                    {
+                        "components": [
+                            {
+                                "internalType": "address",
+                                "name": "txOrigin",
+                                "type": "address"
+                            },
+                            {
+                                "internalType": "bytes32",
+                                "name": "transactionHash",
+                                "type": "bytes32"
+                            },
+                            {
+                                "internalType": "bytes",
+                                "name": "transactionSignature",
+                                "type": "bytes"
+                            }
+                        ],
+                        "internalType": "struct LibCoordinatorApproval.CoordinatorApproval",
+                        "name": "approval",
+                        "type": "tuple"
+                    }
+                ],
+                "name": "getCoordinatorApprovalHash",
+                "outputs": [
+                    {
+                        "internalType": "bytes32",
+                        "name": "approvalHash",
+                        "type": "bytes32"
+                    }
+                ],
+                "payable": false,
+                "stateMutability": "view",
+                "type": "function"
+            }
+        ],
+        "devdoc": {
+            "methods": {
+                "getCoordinatorApprovalHash((address,bytes32,bytes))": {
+                    "details": "Calculates the EIP712 hash of the Coordinator approval mesasage using the domain      separator of this contract.",
+                    "params": {
+                        "approval": "Coordinator approval message containing the transaction hash, and transaction        signature."
+                    },
+                    "return": "approvalHash EIP712 hash of the Coordinator approval message with the domain         separator of this contract."
+                }
+            }
+        },
+        "evm": {
+            "bytecode": {
+                "linkReferences": {},
+                "object": "0x",
+                "opcodes": "",
+                "sourceMap": ""
+            },
+            "deployedBytecode": {
+                "linkReferences": {},
+                "object": "0x",
+                "opcodes": "",
+                "sourceMap": ""
+            }
+        }
+    },
+    "sources": {
+        "src/libs/LibCoordinatorApproval.sol": {
+            "id": 8
+        },
+        "src/libs/LibEIP712CoordinatorDomain.sol": {
+            "id": 10
+        },
+        "@0x/contracts-utils/contracts/src/LibEIP712.sol": {
+            "id": 27
+        }
+    },
+    "sourceCodes": {
+        "src/libs/LibCoordinatorApproval.sol": "/*\n\n  Copyright 2019 ZeroEx Intl.\n\n  Licensed under the Apache License, Version 2.0 (the \"License\");\n  you may not use this file except in compliance with the License.\n  You may obtain a copy of the License at\n\n    http://www.apache.org/licenses/LICENSE-2.0\n\n  Unless required by applicable law or agreed to in writing, software\n  distributed under the License is distributed on an \"AS IS\" BASIS,\n  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n  See the License for the specific language governing permissions and\n  limitations under the License.\n\n*/\n\npragma solidity ^0.5.9;\npragma experimental ABIEncoderV2;\n\nimport \"./LibEIP712CoordinatorDomain.sol\";\n\n\ncontract LibCoordinatorApproval is\n    LibEIP712CoordinatorDomain\n{\n    // Hash for the EIP712 Coordinator approval message\n    // keccak256(abi.encodePacked(\n    //     \"CoordinatorApproval(\",\n    //     \"address txOrigin,\",\n    //     \"bytes32 transactionHash,\",\n    //     \"bytes transactionSignature\",\n    //     \")\"\n    // ));\n    bytes32 constant public EIP712_COORDINATOR_APPROVAL_SCHEMA_HASH =\n        0xa6511c04ca44625d50986f8c36bedc09366207a17b96e347094053a9f8507168;\n\n    struct CoordinatorApproval {\n        address txOrigin;                       // Required signer of Ethereum transaction that is submitting approval.\n        bytes32 transactionHash;                // EIP712 hash of the transaction.\n        bytes transactionSignature;             // Signature of the 0x transaction.\n    }\n\n    /// @dev Calculates the EIP712 hash of the Coordinator approval mesasage using the domain\n    ///      separator of this contract.\n    /// @param approval Coordinator approval message containing the transaction hash, and transaction\n    ///        signature.\n    /// @return approvalHash EIP712 hash of the Coordinator approval message with the domain\n    ///         separator of this contract.\n    function getCoordinatorApprovalHash(CoordinatorApproval memory approval)\n        public\n        view\n        returns (bytes32 approvalHash)\n    {\n        approvalHash = _hashEIP712CoordinatorMessage(_hashCoordinatorApproval(approval));\n        return approvalHash;\n    }\n\n    /// @dev Calculates the EIP712 hash of the Coordinator approval mesasage with no domain separator.\n    /// @param approval Coordinator approval message containing the transaction hash, and transaction\n    //         signature.\n    /// @return result EIP712 hash of the Coordinator approval message with no domain separator.\n    function _hashCoordinatorApproval(CoordinatorApproval memory approval)\n        internal\n        pure\n        returns (bytes32 result)\n    {\n        bytes32 schemaHash = EIP712_COORDINATOR_APPROVAL_SCHEMA_HASH;\n        bytes memory transactionSignature = approval.transactionSignature;\n        address txOrigin = approval.txOrigin;\n        bytes32 transactionHash = approval.transactionHash;\n\n        // Assembly for more efficiently computing:\n        // keccak256(abi.encodePacked(\n        //     EIP712_COORDINATOR_APPROVAL_SCHEMA_HASH,\n        //     approval.txOrigin,\n        //     approval.transactionHash,\n        //     keccak256(approval.transactionSignature)\n        // ));\n\n        assembly {\n            // Compute hash of transaction signature\n            let transactionSignatureHash := keccak256(add(transactionSignature, 32), mload(transactionSignature))\n\n            // Load free memory pointer\n            let memPtr := mload(64)\n\n            mstore(memPtr, schemaHash)                               // hash of schema\n            mstore(add(memPtr, 32), txOrigin)                        // txOrigin\n            mstore(add(memPtr, 64), transactionHash)                 // transactionHash\n            mstore(add(memPtr, 96), transactionSignatureHash)        // transactionSignatureHash\n            // Compute hash\n            result := keccak256(memPtr, 128)\n        }\n        return result;\n    }\n}\n",
+        "src/libs/LibEIP712CoordinatorDomain.sol": "/*\n\n  Copyright 2019 ZeroEx Intl.\n\n  Licensed under the Apache License, Version 2.0 (the \"License\");\n  you may not use this file except in compliance with the License.\n  You may obtain a copy of the License at\n\n    http://www.apache.org/licenses/LICENSE-2.0\n\n  Unless required by applicable law or agreed to in writing, software\n  distributed under the License is distributed on an \"AS IS\" BASIS,\n  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n  See the License for the specific language governing permissions and\n  limitations under the License.\n\n*/\n\npragma solidity ^0.5.9;\n\nimport \"@0x/contracts-utils/contracts/src/LibEIP712.sol\";\n\n\ncontract LibEIP712CoordinatorDomain {\n\n    // EIP712 Domain Name value for the Coordinator\n    string constant public EIP712_COORDINATOR_DOMAIN_NAME = \"0x Protocol Coordinator\";\n\n    // EIP712 Domain Version value for the Coordinator\n    string constant public EIP712_COORDINATOR_DOMAIN_VERSION = \"3.0.0\";\n\n    // Hash of the EIP712 Domain Separator data for the Coordinator\n    // solhint-disable-next-line var-name-mixedcase\n    bytes32 public EIP712_COORDINATOR_DOMAIN_HASH;\n\n    /// @param chainId Chain ID of the network this contract is deployed on.\n    /// @param verifyingContractAddressIfExists Address of the verifying contract (null if the address of this contract)\n    constructor (\n        uint256 chainId,\n        address verifyingContractAddressIfExists\n    )\n        public\n    {\n        address verifyingContractAddress = verifyingContractAddressIfExists == address(0)\n            ? address(this)\n            : verifyingContractAddressIfExists;\n        EIP712_COORDINATOR_DOMAIN_HASH = LibEIP712.hashEIP712Domain(\n            EIP712_COORDINATOR_DOMAIN_NAME,\n            EIP712_COORDINATOR_DOMAIN_VERSION,\n            chainId,\n            verifyingContractAddress\n        );\n    }\n\n    /// @dev Calculates EIP712 encoding for a hash struct in the EIP712 domain\n    ///      of this contract.\n    /// @param hashStruct The EIP712 hash struct.\n    /// @return result EIP712 hash applied to this EIP712 Domain.\n    function _hashEIP712CoordinatorMessage(bytes32 hashStruct)\n        internal\n        view\n        returns (bytes32 result)\n    {\n        return LibEIP712.hashEIP712Message(EIP712_COORDINATOR_DOMAIN_HASH, hashStruct);\n    }\n}\n",
+        "@0x/contracts-utils/contracts/src/LibEIP712.sol": "/*\n\n  Copyright 2019 ZeroEx Intl.\n\n  Licensed under the Apache License, Version 2.0 (the \"License\");\n  you may not use this file except in compliance with the License.\n  You may obtain a copy of the License at\n\n    http://www.apache.org/licenses/LICENSE-2.0\n\n  Unless required by applicable law or agreed to in writing, software\n  distributed under the License is distributed on an \"AS IS\" BASIS,\n  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n  See the License for the specific language governing permissions and\n  limitations under the License.\n\n*/\n\npragma solidity ^0.5.9;\n\n\nlibrary LibEIP712 {\n\n    // Hash of the EIP712 Domain Separator Schema\n    // keccak256(abi.encodePacked(\n    //     \"EIP712Domain(\",\n    //     \"string name,\",\n    //     \"string version,\",\n    //     \"uint256 chainId,\",\n    //     \"address verifyingContract\",\n    //     \")\"\n    // ))\n    bytes32 constant internal _EIP712_DOMAIN_SEPARATOR_SCHEMA_HASH = 0x8b73c3c69bb8fe3d512ecc4cf759cc79239f7b179b0ffacaa9a75d522b39400f;\n\n    /// @dev Calculates a EIP712 domain separator.\n    /// @param name The EIP712 domain name.\n    /// @param version The EIP712 domain version.\n    /// @param verifyingContract The EIP712 verifying contract.\n    /// @return EIP712 domain separator.\n    function hashEIP712Domain(\n        string memory name,\n        string memory version,\n        uint256 chainId,\n        address verifyingContract\n    )\n        internal\n        pure\n        returns (bytes32 result)\n    {\n        bytes32 schemaHash = _EIP712_DOMAIN_SEPARATOR_SCHEMA_HASH;\n\n        // Assembly for more efficient computing:\n        // keccak256(abi.encodePacked(\n        //     _EIP712_DOMAIN_SEPARATOR_SCHEMA_HASH,\n        //     keccak256(bytes(name)),\n        //     keccak256(bytes(version)),\n        //     chainId,\n        //     uint256(verifyingContract)\n        // ))\n\n        assembly {\n            // Calculate hashes of dynamic data\n            let nameHash := keccak256(add(name, 32), mload(name))\n            let versionHash := keccak256(add(version, 32), mload(version))\n\n            // Load free memory pointer\n            let memPtr := mload(64)\n\n            // Store params in memory\n            mstore(memPtr, schemaHash)\n            mstore(add(memPtr, 32), nameHash)\n            mstore(add(memPtr, 64), versionHash)\n            mstore(add(memPtr, 96), chainId)\n            mstore(add(memPtr, 128), verifyingContract)\n\n            // Compute hash\n            result := keccak256(memPtr, 160)\n        }\n        return result;\n    }\n\n    /// @dev Calculates EIP712 encoding for a hash struct with a given domain hash.\n    /// @param eip712DomainHash Hash of the domain domain separator data, computed\n    ///                         with getDomainHash().\n    /// @param hashStruct The EIP712 hash struct.\n    /// @return EIP712 hash applied to the given EIP712 Domain.\n    function hashEIP712Message(bytes32 eip712DomainHash, bytes32 hashStruct)\n        internal\n        pure\n        returns (bytes32 result)\n    {\n        // Assembly for more efficient computing:\n        // keccak256(abi.encodePacked(\n        //     EIP191_HEADER,\n        //     EIP712_DOMAIN_HASH,\n        //     hashStruct\n        // ));\n\n        assembly {\n            // Load free memory pointer\n            let memPtr := mload(64)\n\n            mstore(memPtr, 0x1901000000000000000000000000000000000000000000000000000000000000)  // EIP191 header\n            mstore(add(memPtr, 2), eip712DomainHash)                                            // EIP712 domain hash\n            mstore(add(memPtr, 34), hashStruct)                                                 // Hash of struct\n\n            // Compute hash\n            result := keccak256(memPtr, 66)\n        }\n        return result;\n    }\n}\n"
+    },
+    "sourceTreeHashHex": "0xcf53e0ace795a0d2a4963749ca614db184219cffacb129467b89cf04e9768971",
+    "compiler": {
+        "name": "solc",
+        "version": "soljson-v0.5.16+commit.9c3226ce.js",
+        "settings": {
+            "optimizer": {
+                "enabled": true,
+                "runs": 1000000,
+                "details": {
+                    "yul": true,
+                    "deduplicate": true,
+                    "cse": true,
+                    "constantOptimizer": true
+                }
+            },
+            "outputSelection": {
+                "*": {
+                    "*": [
+                        "abi",
+                        "devdoc",
+                        "evm.bytecode.object",
+                        "evm.bytecode.sourceMap",
+                        "evm.deployedBytecode.object",
+                        "evm.deployedBytecode.sourceMap"
+                    ]
+                }
+            },
+            "evmVersion": "istanbul",
+            "remappings": [
+                "@0x/contracts-exchange-libs=/Users/jacob/projects/ethdev/0x/workspace-remote/workspace/0x-monorepo/node_modules/@0x/contracts-exchange-libs",
+                "@0x/contracts-utils=/Users/jacob/projects/ethdev/0x/workspace-remote/workspace/0x-monorepo/contracts/coordinator/node_modules/@0x/contracts-utils",
+                "@0x/contracts-exchange=/Users/jacob/projects/ethdev/0x/workspace-remote/workspace/0x-monorepo/contracts/coordinator/node_modules/@0x/contracts-exchange"
+            ]
+        }
+    },
+    "chains": {}
+}
